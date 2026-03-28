@@ -1,6 +1,6 @@
 # 🌙 ViveLune Labs
 
-**ViveLune Labs** is an AI-powered education platform designed to deliver personalized, interactive, and scalable learning experiences across multiple subjects.
+**ViveLune Academia** is an AI-powered education platform designed to deliver personalized, interactive, and scalable learning experiences across multiple subjects.
 
 Built at the intersection of artificial intelligence, modern web technologies, and human-centered design, ViveLune Labs aims to redefine how students learn—making education adaptive, intelligent, and deeply engaging.
 
