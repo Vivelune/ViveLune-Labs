@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const manrope = localFont({
   src: [
@@ -40,7 +41,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
         </body>
     </html>
