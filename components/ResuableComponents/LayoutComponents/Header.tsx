@@ -5,6 +5,7 @@ import { ArrowLeft, Bolt, CloudLightning, Lightbulb, PlusSquare } from 'lucide-r
 import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import PurpleIcon from './PurpleIcon'
+import CreateWebinarButton from '../CreateWebinarButton'
 
 type Props = {
     user:User
@@ -46,7 +47,7 @@ const Header = ({user}:Props) => {
                 {/* TODO ADD STRIPE SUBSCRIPTION AND CREATE WEBINAR BUTTON  */}
 
 
-                {/* <CreateWebinarButton/> */}
+                <CreateWebinarButton/>
 
             </div>
 
