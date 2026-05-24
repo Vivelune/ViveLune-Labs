@@ -3,6 +3,8 @@ import PageHeader from '@/components/ResuableComponents/PageHeader'
 import { AttendedTypeEnum } from '@/lib/generated/prisma/enums'
 import { CloudLightning, HomeIcon, Webcam } from 'lucide-react'
 import React from 'react'
+import PipelineLayout from './_components/PipelineLayout'
+import { formatColumnTitle } from './_components/utils'
 
 type Props = {
     params:Promise<{
@@ -32,13 +34,13 @@ const page = async ({params}: Props) => {
             heading="Keep Track of all your students"
             placeholder="Search Name, Tag, Email..."/>
 
-            <div className='flex overflow-x-auto pb-4 gap-4 md:gap-6'>
+            <div className='flex overflow-x-auto mt-8 pb-4 gap-4 md:gap-6'>
                 {Object.entries(pipelineData.data).map(([columnType, columnData])=>(
                     <PipelineLayout
                     key={columnType}
                     title={formatColumnTitle(columnType as AttendedTypeEnum)}
                     count={columnData.count}
-                    users={columnData.users}
+                    users={columnData.user}
                     tags={pipelineData.webinarTags}
                     /> 
                 ))}
