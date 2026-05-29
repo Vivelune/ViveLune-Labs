@@ -9,12 +9,13 @@ import { useState } from 'react'
 import BasicInfoStep from './BasicInfoStep'
 import CTAStep from './CTAStep'
 import AdditionalInfoStep from './AdditionalInfoStep'
+import Stripe from "stripe"
 
 type Props = {
-    
+    stripeProducts : Stripe.Product[] | []
 }
 
-const CreateWebinarButton = (props: Props) => {
+const CreateWebinarButton = ({stripeProducts}: Props) => {
 
     const {isModalOpen, setModalOpen, isComplete, setComplete} = usewebinarStore()
 
@@ -34,7 +35,7 @@ const CreateWebinarButton = (props: Props) => {
         description: "Please provide the end-point for your customers through your webinar" ,
         component: <CTAStep
                     assistants={[]}
-                    stripeProducts={[]}
+                    stripeProducts={stripeProducts}
         
         />,
         },

@@ -6,13 +6,18 @@ import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import PurpleIcon from './PurpleIcon'
 import CreateWebinarButton from '../CreateWebinarButton'
+import Stripe from "stripe"
+import StripeElements from '../Stripe/Element'
+import SubscriptionModal from '../SubscriptionModal'
+
 
 type Props = {
-    user:User
+    user:User;
+     stripeProducts : Stripe.Product[] | []
 }
 
 // TODO: STRIPE SUBSCRIPTION, ASSISTANT
-const Header = ({user}:Props) => {
+const Header = ({user, stripeProducts }:Props) => {
     const pathname = usePathname()
     const router = useRouter()
     return (
@@ -43,11 +48,19 @@ const Header = ({user}:Props) => {
                 </PurpleIcon>
 
 
+            
+
 
                 {/* TODO ADD STRIPE SUBSCRIPTION AND CREATE WEBINAR BUTTON  */}
+                {user.subscription ? (
+                    <CreateWebinarButton stripeProducts={stripeProducts} />
+                ):
+                (
+                        <StripeElements >
+                            <SubscriptionModal user={user}/>
+                        </StripeElements>
+                )}
 
-
-                <CreateWebinarButton/>
 
             </div>
 
