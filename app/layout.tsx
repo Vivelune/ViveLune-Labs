@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "sonner";
 
 const manrope = localFont({
   src: [
@@ -40,8 +41,12 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-          >
-        <TooltipProvider>{children}</TooltipProvider>
+          > 
+        <TooltipProvider>{children}
+        <Toaster/>
+
+
+        </TooltipProvider>
         </ThemeProvider>
         </body>
     </html>

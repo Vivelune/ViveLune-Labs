@@ -77,3 +77,6 @@ export const onBoardingSteps = [
       callStatus: CallStatusEnum.PENDING
     }
   ]
+
+
+  export const subscriptionPriceId = "price_1TcVhURtWzYzvv2B5jsxwu5u"

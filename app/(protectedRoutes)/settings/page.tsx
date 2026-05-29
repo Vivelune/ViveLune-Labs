@@ -1,4 +1,5 @@
 import { onAuthenticateUser } from '@/actions/auth'
+import { getStripeOAuthLink } from '@/lib/stripe/utils'
 import { LucideAlertCircle, LucideArrowRight, LucideCheckCircle2, Star } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -17,6 +18,10 @@ const  page =  async (props: Props) => {
     }
     const isConnected = !!userExist?.user?.stripeConnectId
 
+    const stripeLink = getStripeOAuthLink(
+        'api/stripe-connect',
+        userExist.user.id
+    )
     
 
 
@@ -86,7 +91,7 @@ const  page =  async (props: Props) => {
 
                     </div>
                         {/* Add Stripe Link */}
-                    <Link href="/"
+                    <Link href={stripeLink}
                     className={`px-5 py-2.5 rounded-md font-medium text-sm flex items-center gap-2 transition-colors ${isConnected ? "bg-muted hover:bg-muted/80 text-foreground": "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"}`}>
                         {isConnected ? "Reconnect" : "Connect with Stripe"}
                         <LucideArrowRight size={16}/>
