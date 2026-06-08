@@ -150,3 +150,121 @@ import { revalidatePath } from "next/cache";
         
     }
  }
+
+
+
+ export const registerAttendee = async ({
+    webinarId,
+    email,
+    name,
+ }:{
+    webinarId: string
+    email: string
+    name: string
+ }) =>{
+    try {
+        if(!webinarId || !email){
+            return{
+                success : false, 
+                status: 400,
+                message : 'Missing Required Parameters',
+            }
+        }
+
+
+        const webinar = await prisma.webinar.findUnique({
+            where: {id:webinarId},
+        })
+        if(!webinar){
+            return {
+                success: false, 
+                status: 404,
+                message: 'Webinar not found'
+            }
+        }
+
+
+            let attendee = await prisma.attendee.findUnique({
+                where:{email}
+            })
+
+
+
+            if(!attendee){
+                attendee = await prisma.attendee.create({
+                    data:{email, name},
+                })
+            }
+
+            const existingAttendance = await prisma.attendance.findFirst({
+                where : {
+                    attendeeId : attendee?.id,
+                    webinarId : webinarId,
+
+                },
+                include : {
+                    user : true
+                }
+            })
+
+            if (existingAttendance){
+                return {
+                    success : true,
+                    status : 200,
+                    data: existingAttendance,
+                    message : "You are already registered for this webinar",
+                }
+            }
+
+
+            const attendance = await prisma.attendance.create({
+                data:{
+                    attendedType : AttendedTypeEnum.REGISTERED,
+                    attendeeId: attendee?.id,
+                    webinarId: webinarId,
+
+                },
+                include:{
+                    user : true
+                }
+            })
+
+            revalidatePath(`/${webinarId}`)
+
+            return {
+                success : true,
+                status : 200,
+                data: attendance,
+                message: "Successfully Registered"
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+     catch (error) {
+        console.error('Registration error:', error)
+        return {
+            success : false, 
+            status : 500,
+            error : error, 
+            message : "Something went wrong",
+        }
+    }
+ }

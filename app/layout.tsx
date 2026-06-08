@@ -19,7 +19,7 @@ const manrope = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Vivelune Academia | Knowledge Hub",
+  title: "Vivelune Labs | Knowledge Hub",
   description: "AI-powered education platform designed to deliver personalized, interactive, and scalable learning experiences across multiple subjects.",
 };
 

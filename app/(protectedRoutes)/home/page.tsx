@@ -22,7 +22,7 @@ const page = () => {
 justify-between items-start gap-14">
 <div className="space-y-6">
 <h2 className="text-primary font-semibold text-4x1">
-Welcome to ViveLune Academia — where knowledge evolves into mastery.
+Welcome to ViveLune Labs — where knowledge evolves into mastery.
 </h2>
 <OnBoarding/>
 </div>

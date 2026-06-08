@@ -85,7 +85,7 @@ const SubscriptionModal =  ({user}: Props) => {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-                <DialogTitle>Vivelune Academia Subscription</DialogTitle>
+                <DialogTitle>Vivelune Labs Subscription</DialogTitle>
             </DialogHeader>
 
 
