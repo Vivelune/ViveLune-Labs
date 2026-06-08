@@ -27,7 +27,7 @@ export const onBoardingSteps = [
     {
       id: 3,
       title: "Subscribe to continue your journey",
-      description: "Unlock full access to ViveLune Academia with a monthly subscription.",
+      description: "Unlock full access to ViveLune Labs with a monthly subscription.",
       complete: false,
       link: "" // optional route
     }

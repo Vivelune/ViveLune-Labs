@@ -5,6 +5,7 @@ import { onAuthenticateUser } from "./auth"
 import { formatDate } from "date-fns"
 import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
+import { WebinarStatusEnum } from "@/lib/generated/prisma/enums"
 
 
 
@@ -41,13 +42,12 @@ export const createWebinar = async (formData: WebinarFormState) => {
             }
         }
 
-        // TODO CHECK IF USER HAS SUBSCRIPTION
-        // if(!user.user?.subscription){
-        //     return{
-        //         status : 402,
-        //         message : "Subscription Required"
-        //     }
-        // }
+        if(!user.user?.subscription){
+            return{
+                status : 402,
+                message : "Subscription Required"
+            }
+        }
 
 
         const presenterId = user.user.id
@@ -148,5 +148,58 @@ export const getWebinarByPresenterId = async (presenterId : string) =>{
         console.log('Error getting webinars: ', error)
         return []
         
+    }
+}
+
+
+export const getWebinarById = async (webinarId: string )=> {
+    try {
+        const webinar = await prisma.webinar.findUnique({
+            where:{id: webinarId},
+            include: {
+                presenter: {
+                    select: {
+                        id: true,
+                        name: true,
+                        profileImage : true,
+                        stripeConnectId: true
+                    }
+                }
+            }
+        })
+
+        return webinar
+    } catch (error) {
+        console.error('Error Fetching Webinar', error)
+        throw new Error('Failed to fetch webinar')
+        
+    }
+}
+
+export const changeWebinarStatus = async (
+    webinarId: string,
+    status: WebinarStatusEnum,
+) => {
+    try {
+        const webinar = await prisma.webinar.update({
+            where: {id: webinarId},
+            data:{
+                webinarStatus: status
+            }
+        });
+        return {
+            status: 200,
+            success: true, 
+            message: "Webinar status updated successfully",
+            data: webinar
+        }
+    } catch (error) {
+        console.error("Error updating webinar status: ", error)
+        return {
+            status: 500,
+            success: false, 
+            message: "Failed to update webinar status. Please try again.",
+           
+        }
     }
 }

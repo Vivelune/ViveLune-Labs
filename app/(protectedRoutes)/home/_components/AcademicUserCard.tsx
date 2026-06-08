@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * AcademicUserCard - Recreates the 'featurecard.png' aesthetic
  * Width: 250px
- * Context: ViveLune Academia Learner Profile
+ * Context: ViveLune Labs Learner Profile
  */
 const AcademicUserCard = ({ 
   name = "Jane Smith", 

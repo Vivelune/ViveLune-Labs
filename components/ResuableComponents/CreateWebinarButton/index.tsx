@@ -10,6 +10,7 @@ import BasicInfoStep from './BasicInfoStep'
 import CTAStep from './CTAStep'
 import AdditionalInfoStep from './AdditionalInfoStep'
 import Stripe from "stripe"
+import SuccessStep from './SuccessStep'
 
 type Props = {
     stripeProducts : Stripe.Product[] | []
@@ -17,7 +18,7 @@ type Props = {
 
 const CreateWebinarButton = ({stripeProducts}: Props) => {
 
-    const {isModalOpen, setModalOpen, isComplete, setComplete} = usewebinarStore()
+    const {isModalOpen, setModalOpen, isComplete, setComplete, resetForm } = usewebinarStore()
 
     const [webinarLink, setWebinarLink] = useState("")
 
@@ -54,6 +55,10 @@ const CreateWebinarButton = ({stripeProducts}: Props) => {
         setWebinarLink(`${process.env.NEXT_PUBLIC_BASE_URL}/live-webinar/${webinarId}`)
     }
 
+    const handleCreateNew = ()=> {
+       resetForm()
+    }
+
     
 
   return (
@@ -73,25 +78,27 @@ const CreateWebinarButton = ({stripeProducts}: Props) => {
             (
                 
                 <div className='bg-muted text-primary rounded-lg overflow-hidden'>
-                    <DialogHeader className="p-6">
+                    
                         <DialogTitle className="sr-only">
-                            Webinar Created
-                            {/* SUCCESS STEP */}
-                        </DialogTitle>
-                    </DialogHeader>
+                            Webinar Created </DialogTitle>
+                            <SuccessStep
+                            webinarLink={webinarLink}
+                            onCreateNew={handleCreateNew}
+                            onClose={()=> setModalOpen(false)}
+                            /> 
+
+                        
+                
                     </div>
             )
            : 
             (
                 <>
-                <DialogHeader className="p-6">
+               
                     <DialogTitle className="text-xl font-semibold">
                         Create Learning Session
                     </DialogTitle>
-                        <p className="text-sm text-muted-foreground">
-                        Set up a live class or upload content to start teaching.
-                        </p>
-                </DialogHeader>
+                       
                 <MultiStepForm
                 steps={steps}
                 onComplete={handleComplete}

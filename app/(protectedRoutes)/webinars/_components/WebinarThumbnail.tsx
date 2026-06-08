@@ -40,7 +40,7 @@ const WebinarThumbnail: React.FC<Props> = ({ className = "" }) => {
             MEMBERS EXCLUSIVE
           </p>
           <p className="text-white/30 text-[10px] font-normal tracking-tight">
-            VIVELUNE ACADEMIA
+            VIVELUNE LABS
           </p>
         </div>
       </div>

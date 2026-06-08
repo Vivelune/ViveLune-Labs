@@ -5852,7 +5852,7 @@ zod@^3.24.1:
   resolved "https://registry.npmjs.org/zod/-/zod-4.3.6.tgz"
   integrity sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==
 
-zustand@^5.0.12:
+zustand@^5.0.14:
   version "5.0.14"
   resolved "https://registry.npmjs.org/zustand/-/zustand-5.0.14.tgz"
   integrity sha512-/8tAspM5LMPr28b3fwLYrtdj77ECpfZviaP75CMTnwO8ISyaE4GDIG/9rDDYq/cH9D2Xw2A2RXglLInmVBQB/g==
